@@ -30,7 +30,7 @@ public class VampirismProcedure {
 	private static void execute(@Nullable Event event, LevelAccessor world, double x, double y, double z, Entity entity) {
 		if (entity == null)
 			return;
-		if (entity.getData(VampirismandelseplanesModVariables.PLAYER_VARIABLES).Vampirism == true) {
+		if (entity.getData(VampirismandelseplanesModVariables.PLAYER_VARIABLES).Vampirism) {
 			VampburningProcedure.execute(world, x, y, z, entity);
 			if (entity.getData(VampirismandelseplanesModVariables.PLAYER_VARIABLES).VampBurn == true && entity.isOnFire() == false) {
 				entity.igniteForSeconds(3);
@@ -43,9 +43,11 @@ public class VampirismProcedure {
 				_entity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 60, 2, false, false));
 			if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
 				_entity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 60, 1, false, false));
-			if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-				_entity.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 120, 2, false, false));
-		} else if (entity.getData(VampirismandelseplanesModVariables.PLAYER_VARIABLES).Vampirism == true && (world instanceof Level _lvl7 && _lvl7.isDay()) == true) {
+			if ((entity instanceof LivingEntity _livEnt6 && _livEnt6.hasEffect(MobEffects.NIGHT_VISION)) == false) {
+				if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
+					_entity.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 1000, 1, false, false));
+			}
+		} else if (entity.getData(VampirismandelseplanesModVariables.PLAYER_VARIABLES).Vampirism == true && (world instanceof Level _lvl8 && _lvl8.isDay()) == true) {
 			if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
 				_entity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 60, 1, false, false));
 			if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())

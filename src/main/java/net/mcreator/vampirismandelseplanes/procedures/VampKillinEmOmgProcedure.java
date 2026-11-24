@@ -32,6 +32,8 @@ public class VampKillinEmOmgProcedure {
 		if (sourceentity.getData(VampirismandelseplanesModVariables.PLAYER_VARIABLES).Vampirism == true) {
 			if (sourceentity instanceof Player _player)
 				_player.getFoodData().setFoodLevel((int) ((sourceentity instanceof Player _plr ? _plr.getFoodData().getFoodLevel() : 0) + (entity instanceof LivingEntity _livEnt ? _livEnt.getMaxHealth() : -1) / 2d));
+			if (sourceentity instanceof Player _player)
+				_player.getFoodData().setSaturation((float) ((sourceentity instanceof Player _plr ? _plr.getFoodData().getSaturationLevel() : 0) + (entity instanceof LivingEntity _livEnt ? _livEnt.getMaxHealth() : -1) / 2d));
 		}
 	}
 }
